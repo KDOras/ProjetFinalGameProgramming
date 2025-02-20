@@ -7,7 +7,7 @@ public class Character : MonoBehaviour
     public Transform firePoint;
     public Rigidbody rb;
     public float bulletSpeed = 20f;
-    public float speed = 3f;
+    public float speed = 100f;
     public Camera PlayerCamera;
     public void Move(Vector3 velocity)
     {

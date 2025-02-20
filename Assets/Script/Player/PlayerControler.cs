@@ -96,7 +96,7 @@ public class PlayerControler : MonoBehaviour
         //transform.position += velocity * Time.deltaTime;
         character.Move(velocity * Time.deltaTime);
         float AnimSpeed = velocity.magnitude;
-        AnimSpeed = Mathf.Clamp(AnimSpeed, 0, 1);
+        AnimSpeed = Mathf.Clamp(AnimSpeed, 0.0f, 1.0f);
         animator.SetFloat(Animator.StringToHash("Speed"), AnimSpeed);
     }
 
