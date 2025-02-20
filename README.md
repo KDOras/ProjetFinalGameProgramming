@@ -1,8 +1,8 @@
 # ProjetFinalGameProgramming
 
-Dany Boulanger
+Student : Dany Boulanger
 
-Theme : Télékinésie
+# Theme : Télékinésie
 
 For Grab An Object Your Cursor Must Be On it And You Must Be Really Close Of It
 
@@ -15,4 +15,4 @@ E ( Grab/Throw Object ) [Hold]
 SPACE ( Jump ) [Press] ]
 
 
-Enjoy Your Test
+# Enjoy Your Test
