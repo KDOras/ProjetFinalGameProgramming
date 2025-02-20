@@ -7,7 +7,7 @@ Student : Dany Boulanger
 
 # Launch
 
-When you Launch The Unity Project, Go To The Folder "Scene" And Double Click On "Sample Scene", WaIT A Little Time Then You Can Launch The Project.
+When you Launch The Unity Project, Go To The Folder "Scene" And Double Click On "Sample Scene", Wait A Little Time Then You Can Launch The Project.
 
 When you Launch The Game There is the Control :
 
