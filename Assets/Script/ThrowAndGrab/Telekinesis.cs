@@ -3,9 +3,9 @@ using UnityEngine;
 
 public class Telekinesis : MonoBehaviour
 {
-    public Transform holdPosition; // Empty GameObject in front of the player
-    public float grabSpeed = 10f;  // Speed at which the object moves to the hold position
-    public float throwForce = 10f; // Force applied when throwing
+    public Transform holdPosition;
+    public float grabSpeed = 10f;
+    public float throwForce = 10f;
     public float raycastDistance = 3f;
 
     private Rigidbody grabbedObject;
@@ -13,13 +13,11 @@ public class Telekinesis : MonoBehaviour
     public bool isThrowing = false;
     public Character character;
     public Animator animator;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         
     }
 
-    // Update is called once per frame
     [System.Obsolete]
     void Update()
     {
@@ -30,19 +28,16 @@ public class Telekinesis : MonoBehaviour
     public void HandleInteraction()
     {
         {
-            if (Input.GetKeyDown(KeyCode.E))  // If the left mouse button is pressed
+            if (Input.GetKeyDown(KeyCode.E))
             {
                 RaycastHit hit;
-                Ray ray = character.PlayerCamera.ScreenPointToRay(Input.mousePosition);  // Ray from the camera
+                Ray ray = character.PlayerCamera.ScreenPointToRay(Input.mousePosition);
 
-                // Visualize the ray
-                Debug.DrawRay(ray.origin, ray.direction * raycastDistance, Color.blue, 1f);  // Draw the ray in red
-
-                if (Physics.Raycast(ray, out hit, raycastDistance))  // Shoot the ray
+                if (Physics.Raycast(ray, out hit, raycastDistance))
                 {
-                    if (hit.collider.CompareTag("Grabbable"))  // If the object is grabbable
+                    if (hit.collider.CompareTag("Grabbable"))
                     {
-                        TryGrabObject(hit.collider.gameObject);  // Grab the object
+                        TryGrabObject(hit.collider.gameObject);
                     }
                 }
             }
@@ -69,40 +64,29 @@ public class Telekinesis : MonoBehaviour
         if (rb != null)
         {
             grabbedObject = rb;
-            grabbedObject.useGravity = false;  // Disable gravity for the grabbed object
-            grabbedObject.drag = 10;           // Increase drag to prevent excessive movement
-            grabbedObject.constraints = RigidbodyConstraints.FreezeRotation;  // Freeze rotation
-
-            // Set the object as kinematic to prevent it from interacting with the physics engine while it's grabbed
+            grabbedObject.useGravity = false;
+            grabbedObject.drag = 10;
+            grabbedObject.constraints = RigidbodyConstraints.FreezeRotation;
             grabbedObject.isKinematic = true;
-
-            isGrabbing = true;  // Set the state to "grabbing"
+            isGrabbing = true;
         }
     }
-
-    // Move the object towards the holding position using transform (since it's kinematic)
     public void MoveObjectToHoldPosition()
     {
-        // Move the object towards the hold position
         grabbedObject.transform.position = Vector3.Lerp(grabbedObject.transform.position, holdPosition.position, grabSpeed * Time.deltaTime);
     }
 
-    // Throw the object and reset the grabbing state
     [System.Obsolete]
     public void ThrowObject()
     {
-        // Set the object state to "not grabbing" and reset its properties
         isGrabbing = false;
-        grabbedObject.useGravity = true;  // Re-enable gravity
-        grabbedObject.drag = 1;           // Reset drag to default
-        grabbedObject.constraints = RigidbodyConstraints.None;  // Remove constraints
-
-        // Re-enable physics interactions
-        grabbedObject.isKinematic = false;  // Disable kinematic, enabling physics
-        // Apply velocity in the direction the player is facing (forward direction)
-        Vector3 throwDirection = character.transform.forward;  // Get the forward direction of the player
-        grabbedObject.velocity = throwDirection * throwForce;  // Throw the object with the specified force
-        grabbedObject = null;  // Clear the grabbed object reference
+        grabbedObject.useGravity = true;
+        grabbedObject.drag = 1;
+        grabbedObject.constraints = RigidbodyConstraints.None;
+        grabbedObject.isKinematic = false;
+        Vector3 throwDirection = character.transform.forward; 
+        grabbedObject.velocity = throwDirection * throwForce; 
+        grabbedObject = null; 
     }
 
     private IEnumerator ResetThrowingAfterDelay(float delay)

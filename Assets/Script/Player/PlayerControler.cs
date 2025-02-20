@@ -72,7 +72,6 @@ public class PlayerControler : MonoBehaviour
         {
             firstPersonCamera.playerCamera.transform.parent = character.transform;
             firstPersonCamera.playerCamera.transform.localPosition = new Vector3(0.0f, 1.5f, 0.0f);
-            //firstPersonCamera.transform.position = character.transform.position;
         }
         else
         {
@@ -93,7 +92,6 @@ public class PlayerControler : MonoBehaviour
         Vector3 z = moveInputValue.y * character.transform.forward;
 
         Vector3 velocity = x + z;
-        //transform.position += velocity * Time.deltaTime;
         character.Move(velocity * Time.deltaTime);
         float AnimSpeed = velocity.magnitude;
         AnimSpeed = Mathf.Clamp(AnimSpeed, 0.0f, 1.0f);
